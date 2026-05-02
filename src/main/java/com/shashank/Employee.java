@@ -1,6 +1,9 @@
 package com.shashank;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Fetch;
+
+import java.util.List;
 
 // note entity comes from JPA. There are no of ORM tool and each tool works differently so JPA
 // has set up certain standard which needs to be followed by everyone
@@ -17,8 +20,14 @@ public class Employee {
     private String eName;
     //@Transient // this column will not be a part of table
     private int eAge;
-
-    private Laptop laptop;
+//    @OneToOne
+//    private Laptop laptop;
+    // for one employee multiple laptops
+    // Since it's one to many from employee side and it cann't keep lid in it thus it will create new table, to avoid it use mappedBy=""
+//    @OneToMany(mappedBy = "employee", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "employee")
+//    @ManyToMany
+    private List<Laptop> laptops;
 
     public int geteID() {
         return eID;
@@ -44,13 +53,14 @@ public class Employee {
         this.eAge = eAge;
     }
 
-    public Laptop getLaptop() {
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
 
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
+
 
     @Override
     public String toString() {
@@ -58,7 +68,7 @@ public class Employee {
                 "eID=" + eID +
                 ", eName='" + eName + '\'' +
                 ", eAge=" + eAge +
-                ", laptop=" + laptop +
+                ", laptop=" + laptops +
                 '}';
     }
 }

@@ -9,7 +9,7 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
 <!--        show sql-->
         <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
+<!--        <property name="hibernate.format_sql">true</property>-->
 
 <!--        dilect helps to know with which database we'r working since SQL in each differs text vs varchar-->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
